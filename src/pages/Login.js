@@ -48,7 +48,7 @@ export default function Login({ navigation }) {
          style={styles.container}>
          <Image source={logo} />
          <View style={styles.form}>
-            <Text style={styles.label}>SEU E-MAIL *</Text>
+            <Text style={styles.label}>SEU E-MAIL*</Text>
             <TextInput
                style={styles.input}
                placeholderTextColor="#999"
@@ -58,11 +58,11 @@ export default function Login({ navigation }) {
                onChangeText={setEmail}
                value={email}
                autoCorrect={false} />
-            <Text style={styles.label}>TECNOLOGIAS *</Text>
+            <Text style={styles.label}>TECNOLOGIAS*</Text>
             <TextInput
                style={styles.input}
                placeholderTextColor="#999"
-               placeholder="Tecnologias de interesse"
+               placeholder="Tecnologias de interesse (deixe vazio para todas)"
                autoCapitalize="words"
                onChangeText={setTechs}
                value={techs}
