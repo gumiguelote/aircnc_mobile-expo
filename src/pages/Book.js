@@ -7,7 +7,7 @@ import {
    AsyncStorage,
    TouchableOpacity,
    StyleSheet,
-   TextInput, 
+   TextInput,
    Alert
 } from 'react-native';
 
@@ -16,17 +16,21 @@ export default function Book({ navigation }) {
    const id = navigation.getParam('id');
 
    async function handleSubmit() {
-      const user_id = await AsyncStorage.getItem('user');
+      if (date) {
+         const user_id = await AsyncStorage.getItem('user');
 
-      await api.post(`/spots/${id}/bookings`, { date },{ headers: { user_id }})
+         await api.post(`/spots/${id}/bookings`, { date }, { headers: { user_id } })
 
-      Alert.alert('Solcitação de reserva realizada!');
+         Alert.alert('Solcitação de reserva realizada!');
 
-      navigation.navigate('List');
+         navigation.navigate('List');
+      } else {
+         Alert.alert('Atenção', 'A data da reserva precisa ser informada!');
+      }
    }
 
    function handleCancel() {
-      navigation.navigate('List')
+      navigation.navigate('List');
    }
 
    return (
@@ -37,8 +41,8 @@ export default function Book({ navigation }) {
                style={styles.input}
                placeholder="Digite a data que você deseja reservar"
                placeholderTextColor="#999"
-               keyboardType="email-address"
                autoCapitalize="none"
+               maxLength={10}
                onChangeText={setDate}
                value={date}
                autoCorrect={false} />
